@@ -6,6 +6,7 @@ import {
 	type PrismaFindManyArguments,
 	findManyCursorConnection,
 } from "@devoxa/prisma-relay-cursor-connection";
+import { type Prisma } from "@prisma/client";
 import { Fumo } from "@/lib/gql/common/models/Fumo";
 
 @Injectable()
@@ -33,6 +34,12 @@ export class FumoService {
 			where: {
 				id,
 			},
+		});
+	}
+
+	public async addFumo(data: Prisma.FumoCreateInput) {
+		return this._prismaService.fumo.create({
+			data,
 		});
 	}
 }
